@@ -1,0 +1,36 @@
+create table users (
+workid varchar(20),
+username varchar(50) not null,
+realname varchar(50),
+gender varchar(20),
+age numeric,
+md5password varchar(32) not null,
+userlevel int not null,
+primary key (username)
+);
+create table book (
+isbn varchar(20) not null,
+title varchar(100),
+author varchar(100),
+press varchar(100),
+price numeric,
+quantity int not null,
+primary key (isbn)
+);
+create table import (
+isbn varchar(20) not null,
+status int not null,
+importid counter(1,1) not null,
+quantity int not null,
+price numeric not null,
+foreign key (isbn) references book(isbn),
+primary key (importid)
+);
+create table trade (
+isbn varchar(20) not null,
+tradetime datetime not null,
+quantity int not null,
+price numeric not null,
+foreign key (isbn) references book(isbn),
+primary key (tradetime)
+);
